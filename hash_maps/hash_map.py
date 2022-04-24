@@ -50,8 +50,10 @@ class BasicChainHashMap:
         return hash_index % self.MAX_SIZE
 
 
-class BasicLPHashMap():
-
+class BasicLinearProbingHashMap():
+    """
+    This method iteratively finds the immediate next empty location to insert a given value
+    """
     MAX_SIZE = 10
     KEY_VALUE_PAIR = namedtuple("key_value_pair", "key, value")
 
@@ -61,13 +63,14 @@ class BasicLPHashMap():
     def __setitem__(self, key: Union[int, str], value: Any) -> None:
         hash_idx = self.get_hash(key)
         if self._hash_array[hash_idx] and self._hash_array[hash_idx].key == key:
+            # Overwriting the value of an existing key
             self._hash_array[hash_idx] = self.KEY_VALUE_PAIR(key=key, value=value)
         else:
-            actual_hash_idx = self.linear_probe_add(hash_idx)
+            actual_hash_idx = self.add_value(hash_idx)
             self._hash_array[actual_hash_idx] = self.KEY_VALUE_PAIR(key=key, value=value)
 
-    def linear_probe_add(self, hash_idx: int) -> int:
-        # This method returns the index who's value is None
+    def add_value(self, hash_idx: int) -> int:
+        # This method returns the index of a free location to store a given value in
         if hash_idx == self.MAX_SIZE - 1:
             hash_idx = 0
 
@@ -84,7 +87,7 @@ class BasicLPHashMap():
         if self._hash_array[hash_idx].key == key:
             return self._hash_array[hash_idx]
         else:
-            actual_hash_idx = self.linear_probe_get(hash_idx, key)
+            actual_hash_idx = self.get_value(hash_idx, key)
             return self._hash_array[actual_hash_idx]
 
     def __delitem__(self, key: Union[int, str]) -> None:
@@ -92,10 +95,10 @@ class BasicLPHashMap():
         if self._hash_array[hash_idx].key == key:
             self._hash_array[hash_idx] = None
         else:
-            actual_hash_idx = self.linear_probe_get(hash_idx, key)
+            actual_hash_idx = self.get_value(hash_idx, key)
             self._hash_array[actual_hash_idx] = None
 
-    def linear_probe_get(self, hash_idx: int, key: Union[int, str]) -> int:
+    def get_value(self, hash_idx: int, key: Union[int, str]) -> int:
         # This method returns the index of the matching key
         for idx in self.get_linear_probe_range(hash_idx):
             if self._hash_array[idx] and self._hash_array[idx].key == key:
@@ -117,7 +120,7 @@ class BasicLPHashMap():
 
 if __name__ == "__main__":
     # b = BasicChainHashMap()
-    b = BasicLPHashMap()
+    b = BasicLinearProbingHashMap()
     print(b._hash_array)
     b["march 6"] = 2
     b["march 13"] = 3
