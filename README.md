@@ -1,6 +1,14 @@
-# algos
-Just working out some algos
+# Algorithms and Data Structures
+Brushing up on some common algorithms and data structures
 
 
-## Algos worked
+## Data Structures
 ### Hash Map
+
+    * Basic Hash Map
+    * Linear Probing Hash Map
+
+### Stack
+
+    * Basic Stack implementation using Deque
+    * A few extenstions for stack -> Reversing a string, Checking balanced paranthesis
