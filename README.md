@@ -12,3 +12,7 @@ Brushing up on some common algorithms and data structures
 
     * Basic Stack implementation using Deque
     * A few extenstions for stack -> Reversing a string, Checking balanced paranthesis
+
+### Counter
+
+    * Basic Counter implementation that mimics collections.Counter

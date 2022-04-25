@@ -33,7 +33,7 @@ class Counter:
     def values(self) -> list[Any]:
         return [*self.container.values()]
 
-    def most_common(self, max_items: int = 0):
+    def most_common(self, max_items: int = 0) -> list[tuple[str, Any]]:
         common_items = sorted(self.container.items(), key=lambda item: item[1], reverse=True)
         if max_items > 0:
             return common_items[slice(max_items)]
