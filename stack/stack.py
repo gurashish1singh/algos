@@ -42,34 +42,27 @@ def reverse_string(input_str: str) -> str:
 
 
 def is_bracket_balanced(input_str: str) -> bool:
-    ACCEPTED_PARANS = {"{", "}", "(", ")", "[", "]"}
     PARANS_COMBO = {
         "}": "{",
         ")": "(",
         "]": "[",
     }
+    OPENING_PARANS = set(PARANS_COMBO.values())
+    CLOSING_PARANS = set(PARANS_COMBO.keys())
 
     stack = BasicStack()
-    for item in input_str:
-        stack.push(item)
-
-    balanced = False
-    matching_parans = None
-    last_val = stack.pop()
-    if last_val not in PARANS_COMBO:
-        # This handles all case where the last character is not a parans
-        return False
-    else:
-        matching_parans = last_val
-
-    while stack.empty is False:
-        item = stack.pop()
-        if item in ACCEPTED_PARANS:
-            if item == PARANS_COMBO[matching_parans]:
-                balanced = True
-            else:
-                balanced = False
-    return balanced
+    for char in input_str:
+        if char in OPENING_PARANS:
+            # We push the opening brackets to stack only
+            stack.push(char)
+        elif char in CLOSING_PARANS:
+            if stack.empty:
+                return False
+            elif PARANS_COMBO.get(char) != stack.pop():
+                # False is returned for any closing parans that doesnt have a matching
+                # opening parans at thet top of the stack
+                return False
+    return stack.empty
 
 
 if __name__ == "__main__":
@@ -100,3 +93,5 @@ if __name__ == "__main__":
     assert is_bracket_balanced("[{'hello'})") is False
     assert is_bracket_balanced("[a) + (b)") is False
     assert is_bracket_balanced("))((a+b}{") is False
+    assert is_bracket_balanced("[a] + {b)") is False
+    assert is_bracket_balanced(r"{a} + (b)") is True
