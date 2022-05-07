@@ -20,11 +20,13 @@ class Queue:
 
     @property
     def empty(self) -> bool:
-        return len(self.buffer) == 0
+        return self.size == 0
 
+    @property
     def size(self) -> int:
         return len(self.buffer)
 
+    @property
     def next_element(self) -> Any:
         return self.buffer[-1]
 
@@ -39,7 +41,7 @@ def binary_numbers(numbers: int = 1) -> None:
         return
 
     for _ in range(numbers):
-        next_element = number_queue.next_element()
+        next_element = number_queue.next_element
         print(next_element)
         # Enque items for the next 2 iterations, even if they are not used
         number_queue.enqueue(f"{next_element}0")
@@ -58,6 +60,6 @@ if __name__ == "__main__":
     # print(a.dequeue())
     # print(a.dequeue())
     # print(a.dequeue())
-    # print(a.size())
+    # print(a.size)
 
     binary_numbers(20)

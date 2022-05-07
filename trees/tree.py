@@ -1,30 +1,30 @@
 from typing import Any
 
 
-class TreeNode:
+class Node:
     """
     A basic tree data structure implementation
     """
     def __init__(self, data: Any) -> None:
         self.data = data
-        self.children = []
+        self.sub_nodes = []
         self.parent = None
 
     def __repr__(self) -> str:
         return f"Tree(data={self.data}, parent={self.parent})"
 
-    def add_child(self, child) -> None:
-        # The child has a parent property set as it is being
-        # added to the 'children' list
-        child.parent = self
-        self.children.append(child)
+    def add_sub_node(self, sub_node: Any) -> None:
+        # The sub_node has a parent property set as it is being
+        # added to the 'sub_nodes' list
+        sub_node.parent = self
+        self.sub_nodes.append(sub_node)
 
     def pretty_print(self) -> None:
         spaces = " " * self.get_number_of_parents() * 2
         prefix = f"{spaces}|-" if self.parent else ""
         print(f"{prefix}{self.data}")
-        for child in self.children:
-            child.pretty_print()
+        for sub_node in self.sub_nodes:
+            sub_node.pretty_print()
 
     def get_number_of_parents(self) -> int:
         level = 0
@@ -35,23 +35,23 @@ class TreeNode:
         return level
 
 
-def build_product_tree() -> TreeNode:
-    root = TreeNode("Trees")
+def build_product_tree() -> Node:
+    main_tree = Node("Trees")
 
-    apple = TreeNode("Apple")
-    apple.add_child(TreeNode("Red Apple"))
-    apple.add_child(TreeNode("Green Apple"))
+    apple = Node("Mango")
+    apple.add_sub_node(Node("Honey"))
+    apple.add_sub_node(Node("Kent"))
 
-    orange = TreeNode("Orange")
-    orange.add_child(TreeNode("Mandarin"))
-    orange.add_child(TreeNode("Clementine"))
+    orange = Node("Orange")
+    orange.add_sub_node(Node("Mandarin"))
+    orange.add_sub_node(Node("Clementine"))
 
-    root.add_child(apple)
-    root.add_child(orange)
-    return root
+    main_tree.add_sub_node(apple)
+    main_tree.add_sub_node(orange)
+    return main_tree
 
 
 if __name__ == "__main__":
-    root = build_product_tree()
-    print(root)
-    root.pretty_print()
+    main_tree = build_product_tree()
+    print(main_tree)
+    main_tree.pretty_print()
