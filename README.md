@@ -2,17 +2,12 @@
 Brushing up on some common algorithms and data structures
 
 
+## Setup
+
+Run the 'setup.sh' bash file to setup the local environment and git hooks
+
 ## Data Structures
-### Hash Map
-
-    * Basic Hash Map
-    * Linear Probing Hash Map
-
-### Stack
-
-    * Basic Stack implementation using Deque
-    * A few extenstions for stack -> Reversing a string, Checking balanced paranthesis
-
-### Counter
-
-    * Basic Counter implementation that mimics collections.Counter
+    Hash Map
+    Stack
+    Counter
+    Queue

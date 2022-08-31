@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "Data Structures and Algorithms"
+version = "0.1.1"
+description = "Revisiting some data structures and algorithms."
+authors = ["Gurashish Singh <gurashish1singh@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+isort = "^5.10.1"
+flake8 = "^5.0.4"
+pycodestyle = "^2.9.1"
+pre-commit = "^2.20.0"
+
+[tool.isort]
+profile = "black"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
