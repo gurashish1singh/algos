@@ -1,5 +1,8 @@
 from collections import namedtuple
-from typing import Any, Optional, Union
+from typing import (
+    Any,
+    Union,
+)
 
 
 class BasicChainHashMap:

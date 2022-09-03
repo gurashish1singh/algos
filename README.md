@@ -11,3 +11,7 @@ Run the 'setup.sh' bash file to setup the local environment and git hooks
     Stack
     Counter
     Queue
+
+
+## Algos
+    TBD

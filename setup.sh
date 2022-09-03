@@ -2,4 +2,5 @@ echo "Starting local setup"
 echo "Installing poetry"
 poetry install
 
-echo "Symlinking "
+echo "Installing hooks "
+poetry run pre-commit install
