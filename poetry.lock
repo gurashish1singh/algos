@@ -160,7 +160,7 @@ testing = ["coverage (>=6.2)", "coverage-enable-subprocess (>=1)", "flaky (>=3.7
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "9a27599cefbd118e6afe775495e914cf343f676d576fb0e7fea54855b950b1c1"
+content-hash = "fa4eb2d7ebee2e30fbe9bd8761a0ddd06c1e70cdec2a5ef013212e113575254d"
 
 [metadata.files]
 cfgv = [
