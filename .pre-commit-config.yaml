@@ -10,6 +10,14 @@ repos:
     -   id: trailing-whitespace
 -   repo: local
     hooks:
+    -   id: black
+        name: Running black from local poetry env
+        entry: poetry run black . --check
+        language: python
+        language_version: python3.9
+        files: ".*.py"
+-   repo: local
+    hooks:
     -   id: flake8
         name: Running flake8 from local poetry env
         entry: poetry run flake8 .
