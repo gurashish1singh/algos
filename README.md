@@ -2,9 +2,11 @@
 Brushing up on some common algorithms and data structures
 
 
-## Setup
+## After initial clone setup
 
-Run the 'setup.sh' bash file to setup the local environment and git hooks
+- Ensure you are running Python 3.9+
+- Download poetry -> https://python-poetry.org/docs/#installing-with-the-official-installer
+- Run the "setup.sh" script to setup the local environment and git hooks
 
 ## Data Structures
     Hash Map
@@ -13,5 +15,5 @@ Run the 'setup.sh' bash file to setup the local environment and git hooks
     Queue
 
 
-## Algos
+## Algorithms
     TBD
