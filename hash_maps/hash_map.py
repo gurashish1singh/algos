@@ -53,10 +53,11 @@ class BasicChainHashMap:
         return hash_index % self.MAX_SIZE
 
 
-class BasicLinearProbingHashMap():
+class BasicLinearProbingHashMap:
     """
     This method iteratively finds the immediate next empty location to insert a given value
     """
+
     MAX_SIZE = 10
     KEY_VALUE_PAIR = namedtuple("key_value_pair", "key, value")
 

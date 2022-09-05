@@ -5,24 +5,22 @@ repos:
     -   id: check-merge-conflict
     -   id: check-yaml
     -   id: end-of-file-fixer
-    -   id: name-tests-test
-    -   id: pretty-format-json
     -   id: trailing-whitespace
 -   repo: local
     hooks:
     -   id: black
         name: Running black from local poetry env
-        entry: poetry run black . --check
-        language: python
-        language_version: python3.9
-        files: ".*.py"
+        entry: poetry run black .
+        # Black does not work with language as python
+        language: system
+        types:
+          - python
 -   repo: local
     hooks:
     -   id: flake8
         name: Running flake8 from local poetry env
         entry: poetry run flake8 .
         language: python
-        language_version: python3.9
         files: ".*.py"
 -   repo: local
     hooks:
@@ -30,5 +28,4 @@ repos:
         name: Running isort from local poetry env
         entry: poetry run isort .
         language: python
-        language_version: python3.9
         files: ".*.py"
