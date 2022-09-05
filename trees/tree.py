@@ -5,6 +5,7 @@ class Node:
     """
     A basic tree data structure implementation
     """
+
     def __init__(self, data: Any) -> None:
         self.data = data
         self.sub_nodes = []
