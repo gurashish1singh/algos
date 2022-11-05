@@ -1,3 +1,6 @@
+#!/bin/bash
+set -eou pipefail
+
 echo "Starting local setup"
 echo "Installing poetry"
 poetry install

@@ -13,6 +13,7 @@ Brushing up on some common algorithms and data structures
     Stack
     Counter
     Queue
+    Linked Lists
 
 
 ## Algorithms
