@@ -48,7 +48,7 @@ class LinkedList:
 
     def remove_at(self, index: int) -> None:
         if index < 0 or index >= len(self):
-            raise IndexError(f"Given {index = } is incorrect.")
+            raise IndexError(f"{index = } is out of range")
 
         if index == 0:
             self.head = self.head.next_value
