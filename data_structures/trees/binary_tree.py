@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections import deque
 from typing import Any
 
 
@@ -94,6 +95,22 @@ class BinaryTree:
         elements.append(self.data)
         return elements
 
+    def level_order_traversal(self) -> list[Any]:
+        # BFS
+        queue = deque()
+        elements = []
+        if self.data is not None:
+            queue.append(self)
+
+            while queue:
+                node = queue.popleft()
+                elements.append(node.data)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+        return elements
+
     def delete(self, value: Any) -> BinaryTree | None:
         if self.data is None:
             return
@@ -145,3 +162,4 @@ if __name__ == "__main__":
     print(f"{numbers_tree.in_order_traversal() = }")
     print(f"{numbers_tree.delete(17) = }")
     print(f"{numbers_tree.in_order_traversal() = }")
+    print(f"{numbers_tree.level_order_traversal() = }")
