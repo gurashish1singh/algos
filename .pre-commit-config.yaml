@@ -15,17 +15,13 @@ repos:
         language: system
         types:
           - python
--   repo: local
-    hooks:
     -   id: flake8
         name: Running flake8 from local poetry env
         entry: poetry run flake8 .
-        language: python
+        language: system
         files: ".*.py"
--   repo: local
-    hooks:
     -   id: isort
         name: Running isort from local poetry env
         entry: poetry run isort .
-        language: python
+        language: system
         files: ".*.py"
