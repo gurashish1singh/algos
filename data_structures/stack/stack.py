@@ -1,12 +1,14 @@
 from __future__ import annotations
 
-from collections import deque
 from typing import Any
 
 
 class BasicStack:
     def __init__(self) -> None:
-        self.container = deque()
+        self.container = []
+
+    def __len__(self) -> int:
+        return len(self.container)
 
     def push(self, item: Any) -> None:
         self.container.append(item)
@@ -23,9 +25,6 @@ class BasicStack:
         except IndexError:
             return "Container is empty"
 
-    def size(self) -> int:
-        return len(self.container)
-
     @property
     def empty(self) -> bool:
         return len(self.container) == 0
@@ -37,10 +36,10 @@ def reverse_string(input_str: str) -> str:
     for item in input_str:
         stack.push(item)
 
-    reversed = []
+    reversed_str = []
     while stack.empty is False:
-        reversed.append(stack.pop())
-    return "".join(reversed)
+        reversed_str.append(stack.pop())
+    return "".join(reversed_str)
 
 
 def is_bracket_balanced(input_str: str) -> bool:
@@ -55,7 +54,7 @@ def is_bracket_balanced(input_str: str) -> bool:
     stack = BasicStack()
     for char in input_str:
         if char in OPENING_PARANS:
-            # We push the opening brackets to stack only
+            # We only push the opening brackets to stack
             stack.push(char)
         elif char in CLOSING_PARANS:
             if stack.empty:
@@ -78,16 +77,16 @@ if __name__ == "__main__":
     # print(stack.pop())
     # print(stack)
 
-    # stack = BasicStack()
-    # stack.push(5)
-    # print(stack.peek())
-    # print(stack.size())
-    # print(stack.pop())
-    # print(stack.empty)
-    # print(stack.pop())
-    # print(stack.peek())
+    stack = BasicStack()
+    stack.push(5)
+    print(stack.peek())
+    print(len(stack))
+    print(stack.pop())
+    print(stack.empty)
+    print(stack.pop())
+    print(stack.peek())
 
-    # print(reverse_string("This should be reversed!"))
+    print(reverse_string("This should be reversed!"))
 
     assert is_bracket_balanced("{'hello'}") is True
     assert is_bracket_balanced("{'hello'") is False

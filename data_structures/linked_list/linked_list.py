@@ -12,14 +12,10 @@ class Node:
 class LinkedList:
     def __init__(self) -> None:
         self.head = None
+        self.size = 0
 
     def __len__(self) -> int:
-        count = 0
-        itr = self.head
-        while itr:
-            count += 1
-            itr = itr.next_value
-        return count
+        return self.size
 
     def insert_at_beginning(self, data: Any) -> None:
         # If we already have a head, we create a node who's
@@ -27,6 +23,7 @@ class LinkedList:
         # head as the new node.
         node = Node(data=data, next_value=self.head)
         self.head = node
+        self.size += 1
 
     def insert_at_end(self, data: Any) -> None:
         if self.head is None:
@@ -39,10 +36,12 @@ class LinkedList:
 
         # The last value will not have a next value
         itr.next_value = Node(data=data, next_value=None)
+        self.size += 1
 
     def insert_values(self, data: list[Any] | tuple[Any]) -> None:
         # Blank out the whole linked list
         self.head = None
+        self.size = 0
         for val in data:
             self.insert_at_end(val)
 
@@ -52,6 +51,7 @@ class LinkedList:
 
         if index == 0:
             self.head = self.head.next_value
+            self.size -= 1
             return
 
         current_index = 0
@@ -60,6 +60,7 @@ class LinkedList:
             # To remove the element at the given index, we need to stop at the previous element
             if current_index == (index - 1):
                 itr.next_value = itr.next_value.next_value
+                self.size -= 1
                 break
             itr = itr.next_value
             current_index += 1
@@ -77,6 +78,7 @@ class LinkedList:
         while itr:
             if current_index == (index - 1):
                 itr.next_value = Node(data=data, next_value=itr.next_value)
+                self.size += 1
                 break
             itr = itr.next_value
             current_index += 1
@@ -86,6 +88,7 @@ class LinkedList:
         while itr:
             if value_after == itr.data:
                 itr.next_value = Node(data=value_to_insert, next_value=itr.next_value)
+                self.size += 1
                 return
             itr = itr.next_value
 
@@ -96,6 +99,7 @@ class LinkedList:
         while itr:
             if value_to_remove == itr.next_value.data:
                 itr.next_value = itr.next_value.next_value
+                self.size -= 1
                 return
             itr = itr.next_value
 

@@ -11,19 +11,15 @@ class BinaryTree:
         self.right = None
 
     def add_node(self, data: Any) -> None:
-        # Removes duplicates
-        if self.data == data:
+        # Remove duplicates
+        if data == self.data:
             return
-
-        # Left subtree
-        if data < self.data:
-            # Check left node first
+        elif data < self.data:
             if self.left:
                 self.left.add_node(data)
             else:
                 self.left = BinaryTree(data)
         else:
-            # Right subtree
             if self.right:
                 self.right.add_node(data)
             else:
@@ -42,19 +38,14 @@ class BinaryTree:
         return elements
 
     def search(self, value: Any) -> bool:
-        if self.data == value:
+        if value == self.data:
             return True
-
-        if value < self.data:
+        elif value < self.data:
             if self.left:
                 return self.left.search(value)
-            else:
-                return False
-        elif value > self.data:
+        else:
             if self.right:
                 return self.right.search(value)
-            else:
-                return False
         return False
 
     def find_min(self) -> Any:
@@ -101,7 +92,6 @@ class BinaryTree:
         elements = []
         if self.data is not None:
             queue.append(self)
-
             while queue:
                 node = queue.popleft()
                 elements.append(node.data)
@@ -122,21 +112,53 @@ class BinaryTree:
             if self.right:
                 self.right = self.right.delete(value)
         else:
-            # Node to be deleted has no sub-nodes
+            # If we are at a leaf node
             if self.left is None and self.right is None:
                 return
-            # Node to be deleted has one sub-node
+            # If we have one sub-child (left or right)
             elif self.left is None:
                 return self.right
-            # Node to be deleted has one sub-node
             elif self.right is None:
                 return self.left
             else:
-                # Node to be deleted has two sub-nodes
+                # We have two childs in the current node
                 min_value = self.right.find_min()
                 self.data = min_value
                 self.right = self.right.delete(min_value)
         return self
+
+    def get_height_dfs(self) -> int:
+        if self.data is None:
+            return 0
+
+        left = right = 0
+        if self.left:
+            left = self.left.get_height_dfs()
+        if self.right:
+            right = self.right.get_height_dfs()
+        return max(left, right) + 1
+
+    def get_height_bfs(self) -> int:
+        if self.data is None:
+            return 0
+
+        height = 0
+        queue = deque()
+        queue.append(self)
+        while queue:
+            # The current_size variable is used to count down the left and right nodes
+            # the current node may have. We only increment the height when the current_size
+            # reaches 0 i.e. we have parsed the left and right childs of the current node.
+            current_size = len(queue)
+            while current_size > 0:
+                node = queue.popleft()
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+                current_size -= 1
+            height += 1
+        return height
 
 
 def build_tree(elements: list[Any]) -> BinaryTree:
@@ -163,3 +185,13 @@ if __name__ == "__main__":
     print(f"{numbers_tree.delete(17) = }")
     print(f"{numbers_tree.in_order_traversal() = }")
     print(f"{numbers_tree.level_order_traversal() = }")
+    print("*" * 100)
+
+    numbers = [17, 4, 20]
+    numbers_tree = build_tree(numbers)
+    print(f"root node = {numbers_tree.data}")
+    print(f"{numbers_tree.pre_order_traversal() = }")
+    print(f"{numbers_tree.delete(4) = }")
+    print(f"{numbers_tree.pre_order_traversal() = }")
+    print(f"{numbers_tree.get_height_dfs() = }")
+    print(f"{numbers_tree.get_height_bfs() = }")
