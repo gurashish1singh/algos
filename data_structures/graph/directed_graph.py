@@ -11,7 +11,7 @@ class DirectedGraph:
             self.graph_dict[start].append(end)
         print(self.graph_dict)
 
-    def get_paths(self, start: str, end: str, path: list[str] = []) -> list[list[str]]:
+    def get_paths(self, start: str, end: str, path: list[str]) -> list[list[str]]:
         if start not in self.graph_dict:
             return []
 
@@ -26,7 +26,7 @@ class DirectedGraph:
                 paths += self.get_paths(start=node, end=end, path=path)
         return paths
 
-    def get_shortest_path(self, start: str, end: str, path: list[str] = []) -> list[str]:
+    def get_shortest_path(self, start: str, end: str, path: list[str]) -> list[str]:
         # Not weighted, only deals with number of items in list
         if start not in self.graph_dict:
             return []
@@ -72,10 +72,10 @@ if __name__ == "__main__":
         ),
     )
     for start, end, expected_path in iters:
-        print(f"{start = }, {end = }, paths = {dg.get_paths(start, end)}")
+        print(f"{start = }, {end = }, paths = {dg.get_paths(start, end, [])}")
         assert (
-            dg.get_paths(start, end) == expected_path
-        ), f"{expected_path = } not equal to returned path = {dg.get_paths(start, end)}"
+            dg.get_paths(start, end, []) == expected_path
+        ), f"{expected_path = } not equal to returned path = {dg.get_paths(start, end, [])}"
 
     iters = (
         ("Toronto", "Mumbai", []),
@@ -84,7 +84,7 @@ if __name__ == "__main__":
         ("Mumbai", "New York", ["Mumbai", "Paris", "New York"]),
     )
     for start, end, expected_path in iters:
-        print(f"{start = }, {end = }, paths = {dg.get_shortest_path(start, end)}")
+        print(f"{start = }, {end = }, paths = {dg.get_shortest_path(start, end, [])}")
         assert (
-            dg.get_shortest_path(start, end) == expected_path
-        ), f"{expected_path = } not equal to returned path = {dg.get_shortest_path(start, end)}"
+            dg.get_shortest_path(start, end, []) == expected_path
+        ), f"{expected_path = } not equal to returned path = {dg.get_shortest_path(start, end, [])}"

@@ -9,12 +9,20 @@ Brushing up on some common algorithms and data structures
 - Run the "setup.sh" script to setup the local environment and git hooks
 
 ## Data Structures
-    Hash Map
-    Stack
     Counter
-    Queue
+    Graph
+    Hash Maps
+    Heap
     Linked Lists
+    Queues
+    Stack
+    Trees
 
 
-## Algorithms
-    TBD
+## Sorting Algorithms
+    Binary Search
+    Bubble Sort
+    Insertion Sort
+    Merge Sort
+    Selection Sort
+    Shell Sort

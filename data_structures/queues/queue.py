@@ -12,6 +12,12 @@ class Queue:
     def __init__(self) -> None:
         self.buffer = deque()
 
+    def __repr__(self) -> str:
+        return str(self.buffer)
+
+    def __len__(self) -> int:
+        return len(self.buffer)
+
     def enqueue(self, value: Any) -> None:
         self.buffer.appendleft(value)
 
@@ -22,29 +28,26 @@ class Queue:
 
     @property
     def empty(self) -> bool:
-        return self.size == 0
-
-    @property
-    def size(self) -> int:
-        return len(self.buffer)
+        return len(self.buffer) == 0
 
     @property
     def next_element(self) -> Any:
         return self.buffer[-1]
 
 
-def binary_numbers(numbers: int = 1) -> None:
+def binary_numbers(number: int = 1) -> None:
+    # Returns all binary numbers uptil a given number
     number_queue = Queue()
     # By default the 1st number has been already inserted
     number_queue.enqueue(1)
 
-    if numbers < 1:
+    if number < 1:
         print(0)
         return
 
-    for _ in range(numbers):
+    for num, _ in enumerate(range(number), start=1):
         next_element = number_queue.next_element
-        print(next_element)
+        print(f"Binary representation for {num} is : {next_element}")
         # Enque items for the next 2 iterations, even if they are not used
         number_queue.enqueue(f"{next_element}0")
         number_queue.enqueue(f"{next_element}1")
@@ -62,6 +65,6 @@ if __name__ == "__main__":
     # print(a.dequeue())
     # print(a.dequeue())
     # print(a.dequeue())
-    # print(a.size)
+    # print(len(a))
 
     binary_numbers(20)
